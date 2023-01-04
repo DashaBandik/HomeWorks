@@ -23,9 +23,9 @@ public class Task5 {
         Matcher matcher = Pattern.compile(dateRegEx).matcher(date);
 
         if(matcher.matches()){
-            System.out.print("Дата существует");
+            System.out.print("Дата существует ");
         }else {
-            System.out.print("Даты не существует");
+            System.out.print("Даты не существует ");
         }
 
     }
