@@ -1,43 +1,42 @@
 package by.belhard;
 
 
+import java.util.ArrayList;
+
 public class Reader {
     String fullName;
     int numTicket;
     String faculty;
     String dateOfBirth;
     String telephoneNum;
-    Book[] books = new Book[10];
+
+    ArrayList<Book> books = new ArrayList<Book>();
 
     Reader() {
 
     }
 
-    Reader(String fullName, int numTicket, String faculty, String dateOfBirth, String telefoneNum) {
+    Reader(String fullName, int numTicket, String faculty, String dateOfBirth, String telefonNum) {
         this.fullName = fullName;
         this.numTicket = numTicket;
         this.faculty = faculty;
         this.dateOfBirth = dateOfBirth;
-        this.telephoneNum = telefoneNum;
+        this.telephoneNum = telefonNum;
     }
 
 
     void takeBook(Book book) {
-        for (int i = 0; i < books.length; i++) {
-            if (books[i] == null) {
-                books[i] = book;
-                System.out.println(fullName + " взял книгу " + book.name);
-                break;
-            }
-        }
+        books.add(book);
+        System.out.println(fullName + " взял книгу " + book.name);
+
     }
 
     void returnBook(String bookName) {
         boolean isBookReturned = false;
 
-        for (int i = 0; i < books.length; i++) {
-            if (books[i] != null && books[i].name.equals(bookName)) {
-                books[i] = null;
+        for (int i = 0; i < books.size(); i++) {
+            if (books.get(i) != null && books.get(i).name.equals(bookName)) {
+                books.remove(i);
                 isBookReturned = true;
                 System.out.println(fullName + " вернул книгу " + bookName);
                 break;
@@ -53,8 +52,8 @@ public class Reader {
         int howManyBooks = 0;
         String bookNames = "";
 
-        for (int i = 0; i < books.length; i++) {
-            Book book = books[i];
+        for (int i = 0; i < books.size(); i++) {
+            Book book = books.get(i);
             if (book != null) {
                 howManyBooks++;
                     bookNames = bookNames + book.name;
