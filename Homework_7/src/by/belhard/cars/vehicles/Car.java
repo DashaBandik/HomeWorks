@@ -8,6 +8,7 @@ public class Car {
     private String carClass;
     private double weight;
     private Driver someDriver;
+    private Engine someEngine;
 
     public Engine getSomeEngine() {
         return someEngine;
@@ -17,7 +18,6 @@ public class Car {
         this.someEngine = someEngine;
     }
 
-    private Engine someEngine;
 
     public Driver getSomeDriver() {
         return someDriver;
