@@ -1,9 +1,11 @@
 package by.belhard.animals;
 
 public class Polyclinic {
+
+
     public static void main(String[] args) {
         Cat cat = new Cat();
-        cat.setName("Мяутон");
+        cat.setName("Мяусон");
         cat.setAge(5);
         cat.makeNoise();
 
@@ -16,6 +18,5 @@ public class Polyclinic {
         rat.setName("Ева");
         rat.setAge(1);
         rat.makeNoise();
-
     }
 }

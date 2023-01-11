@@ -9,7 +9,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         int action;
-        LinkedList<Reader> readers = new LinkedList<Reader>();
+        LinkedList<Reader> readers = FileUtil.restoreReadersList();
 
         do {
             System.out.println("1 -- Добавить нового читателя");
@@ -41,95 +41,96 @@ public class Main {
                     readers.add(reader);
                     break;
                 }
-            case 2: {
-                System.out.println("Введите данные книги...");
-                Book book = new Book();
-                System.out.print("Введите название книги: ");
-                book.name = scanner.nextLine();
-                System.out.print("Введите автора книги: ");
-                book.authorName = scanner.nextLine();
-                System.out.print("Введите содержание книги: ");
-                book.text = scanner.nextLine();
+                case 2: {
+                    System.out.println("Введите данные книги...");
+                    Book book = new Book();
+                    System.out.print("Введите название книги: ");
+                    book.name = scanner.nextLine();
+                    System.out.print("Введите автора книги: ");
+                    book.authorName = scanner.nextLine();
+                    System.out.print("Введите содержание книги: ");
+                    book.text = scanner.nextLine();
 
-                System.out.print("Введите номер читательского билета: ");
+                    System.out.print("Введите номер читательского билета: ");
 
-                int number = scanner.nextInt();
-                scanner.nextLine();
-                boolean found = false;
-                for (int i = 0; i < readers.size(); i++) {
-                    if (readers.get(i).numTicket == number) {
-                        readers.get(i).takeBook(book);
-                        found = true;
-                        break;
+                    int number = scanner.nextInt();
+                    scanner.nextLine();
+                    boolean found = false;
+                    for (int i = 0; i < readers.size(); i++) {
+                        if (readers.get(i).numTicket == number) {
+                            readers.get(i).takeBook(book);
+                            found = true;
+                            break;
+                        }
                     }
-                }
 
-                if (!found) {
-                    System.out.println("Такого пользователя нет");
-                }
-                break;
-            }
-
-            case 3: {
-                System.out.print("Введите название книги: ");
-                String bookName = scanner.nextLine();
-
-                System.out.print("Введите номер читательского билета: ");
-                int number = scanner.nextInt();
-                scanner.nextLine();
-                boolean found = false;
-                for (int i = 0; i < readers.size(); i++) {
-                    if (readers.get(i) != null && readers.get(i).numTicket == number) {
-                        readers.get(i).returnBook(bookName);
-
-                        found = true;
-                        break;
+                    if (!found) {
+                        System.out.println("Такого пользователя нет");
                     }
+                    break;
                 }
 
-                if (!found) {
-                    System.out.println("Такого пользователя нет");
-                }
-                break;
-            }
+                case 3: {
+                    System.out.print("Введите название книги: ");
+                    String bookName = scanner.nextLine();
 
-            case 4: {
-                System.out.print("Введите номер читательского билета: ");
-                int number = scanner.nextInt();
-                scanner.nextLine();
-                boolean found = false;
-                for (int i = 0; i < readers.size(); i++) {
-                    if (readers.get(i) != null && readers.get(i).numTicket == number) {
-                        readers.get(i).printStatus();
-                        found = true;
-                        break;
+                    System.out.print("Введите номер читательского билета: ");
+                    int number = scanner.nextInt();
+                    scanner.nextLine();
+                    boolean found = false;
+                    for (int i = 0; i < readers.size(); i++) {
+                        if (readers.get(i) != null && readers.get(i).numTicket == number) {
+                            readers.get(i).returnBook(bookName);
+
+                            found = true;
+                            break;
+                        }
                     }
-                }
 
-                if (!found) {
-                    System.out.println("Такого пользователя нет");
-                }
-                break;
-            }
-            case 5: {
-                for (Reader r : readers) {
-                    if (r != null) {
-                        r.printStatus();
+                    if (!found) {
+                        System.out.println("Такого пользователя нет");
                     }
+                    break;
                 }
-                break;
-            }
 
-            case 6: {
-                System.out.println("Завершаем программу");
-                break;
-            }
+                case 4: {
+                    System.out.print("Введите номер читательского билета: ");
+                    int number = scanner.nextInt();
+                    scanner.nextLine();
+                    boolean found = false;
+                    for (int i = 0; i < readers.size(); i++) {
+                        if (readers.get(i) != null && readers.get(i).numTicket == number) {
+                            readers.get(i).printStatus();
+                            found = true;
+                            break;
+                        }
+                    }
 
-            default: {
-                System.out.println(" Нет такой команды");
-            }
-        }
-    } while(action!=6);
+                    if (!found) {
+                        System.out.println("Такого пользователя нет");
+                    }
+                    break;
+                }
+                case 5: {
+                    for (Reader r : readers) {
+                        if (r != null) {
+                            r.printStatus();
+                        }
+                    }
+                    break;
+                }
 
+                case 6: {
+                    System.out.println("Завершаем программу");
+                    FileUtil.saveReadersList(readers);
+                    break;
+                }
+
+                default: {
+                    System.out.println(" Нет такой команды");
+                }
+            }
+        } while (action != 6);
+
+    }
 }
-        }

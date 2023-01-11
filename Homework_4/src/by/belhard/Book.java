@@ -1,6 +1,8 @@
 package by.belhard;
 
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable {
     String name;
     String authorName;
     String text;

@@ -1,9 +1,10 @@
 package by.belhard;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Reader {
+public class Reader implements Serializable {
     String fullName;
     int numTicket;
     String faculty;
