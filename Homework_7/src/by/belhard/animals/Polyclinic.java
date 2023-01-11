@@ -3,6 +3,10 @@ package by.belhard.animals;
 public class Polyclinic {
 
 
+    public static void makeNoise2 (Animal someAnimal){
+        //проверка по рекомендации
+        someAnimal.makeNoise();
+    }
     public static void main(String[] args) {
         Cat cat = new Cat();
         cat.setName("Мяусон");
@@ -15,8 +19,12 @@ public class Polyclinic {
         dog.makeNoise();
 
         Rat rat = new Rat();
-        rat.setName("Ева");
+        rat.setName("Стерт Литл");
         rat.setAge(1);
         rat.makeNoise();
+
+        makeNoise2(cat);
+        makeNoise2(dog);
+        makeNoise2(rat);
     }
 }
